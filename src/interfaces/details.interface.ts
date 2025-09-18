@@ -5,7 +5,7 @@ export interface MealsResponse {
 export interface MealDetailes {
   idMeal: string
   strMeal: string
-  strMealAlternate: any
+  strMealAlternate: string | null
   strCategory: string
   strArea: string
   strInstructions: string
@@ -14,8 +14,8 @@ export interface MealDetailes {
   strYoutube: string
   [key: `strIngredient${number}`]: string | null
   [key: `strMeasure${number}`]: string | null
-  strSource: any
-  strImageSource: any
-  strCreativeCommonsConfirmed: any
-  dateModified: any
+  strSource: string | null
+  strImageSource: string | null
+  strCreativeCommonsConfirmed: string | null
+  dateModified: string | null
 }

@@ -4,8 +4,8 @@ import { MealDetailes } from '@/interfaces/details.interface'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 
-export default async function Mealpage({ params }: { params: Promise<{ mealId: string }> }) {
-  const { mealId } = await params
+export default async function Mealpage({ params }: { params: { mealId: string } }) {
+  const { mealId } = params
   const mealDetailes: MealDetailes = await getmealDetailes(mealId)
 
   const ingredients: { name: string; measure: string }[] = []
@@ -39,16 +39,20 @@ export default async function Mealpage({ params }: { params: Promise<{ mealId: s
         <h1 className="text-2xl font-bold mb-4">{mealDetailes.strMeal}</h1>
         <p>{mealDetailes.strInstructions}</p>
         <div className="mt-4">
-          <Button variant="default" className="mr-3">
-            <a href={mealDetailes.strYoutube} target="_blank" rel="noopener noreferrer">
-              YouTube
-            </a>
-          </Button>
-          <Button variant="destructive">
-            <a href={mealDetailes.strSource} target="_blank" rel="noopener noreferrer">
-              Source
-            </a>
-          </Button>
+          {mealDetailes.strYoutube && (
+            <Button variant="default" className="mr-3">
+              <a href={mealDetailes.strYoutube} target="_blank" rel="noopener noreferrer">
+                YouTube
+              </a>
+            </Button>
+          )}
+          {mealDetailes.strSource && (
+            <Button variant="destructive">
+              <a href={mealDetailes.strSource} target="_blank" rel="noopener noreferrer">
+                Source
+              </a>
+            </Button>
+          )}
         </div>
       </div>
 
